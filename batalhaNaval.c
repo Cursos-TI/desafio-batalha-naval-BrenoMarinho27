@@ -4,9 +4,59 @@
 // Este código inicial serve como base para o desenvolvimento do sistema de Batalha Naval.
 // Siga os comentários para implementar cada parte do desafio.
 
+#include <stdio.h>
+
 int main() {
-    // Nível Novato - Posicionamento dos Navios
-    // Sugestão: Declare uma matriz bidimensional para representar o tabuleiro (Ex: int tabuleiro[5][5];).
+    // Definindo o tamanho do tabuleiro 10x10
+    int tabuleiro[10][10];
+
+    // Inicializando o tabuleiro com 0 (representando água)
+    for (int i = 0; i < 10; i++) {
+        for (int j = 0; j < 10; j++) {
+            tabuleiro[i][j] = 0;
+        }
+    }
+
+    // Coordenadas e tamanho dos navios
+    int xVertical = 2, yVertical = 3, tamanhoVertical = 4;
+    int xHorizontal = 5, yHorizontal = 6, tamanhoHorizontal = 3;
+
+    // Posicionando o navio vertical no tabuleiro
+    for (int i = 0; i < tamanhoVertical; i++) {
+        tabuleiro[xVertical + i][yVertical] = 1;  // Marca a posição com '1' para o navio
+    }
+
+    // Posicionando o navio horizontal no tabuleiro
+    for (int i = 0; i < tamanhoHorizontal; i++) {
+        tabuleiro[xHorizontal][yHorizontal + i] = 1;  // Marca a posição com '1' para o navio
+    }
+
+    // Exibindo as coordenadas do navio vertical
+    printf("Posicionamento do navio vertical (coordenadas):\n");
+    for (int i = 0; i < tamanhoVertical; i++) {
+        printf("(%d, %d)\n", xVertical + i, yVertical);
+    }
+
+    // Exibindo as coordenadas do navio horizontal
+    printf("Posicionamento do navio horizontal (coordenadas):\n");
+    for (int i = 0; i < tamanhoHorizontal; i++) {
+        printf("(%d, %d)\n", xHorizontal, yHorizontal + i);
+    }
+
+    // Exibindo o tabuleiro
+    printf("\nTabuleiro de Batalha Naval:\n");
+    for (int i = 0; i < 10; i++) {
+        for (int j = 0; j < 10; j++) {
+            printf("%d ", tabuleiro[i][j]);
+        }
+        printf("\n");
+    }
+
+    return 0;
+}
+
+
+// Sugestão: Declare uma matriz bidimensional para representar o tabuleiro (Ex: int tabuleiro[5][5];).
     // Sugestão: Posicione dois navios no tabuleiro, um verticalmente e outro horizontalmente.
     // Sugestão: Utilize `printf` para exibir as coordenadas de cada parte dos navios.
 
