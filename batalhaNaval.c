@@ -23,12 +23,12 @@ int main() {
 
     // Posicionando o navio vertical no tabuleiro
     for (int i = 0; i < tamanhoVertical; i++) {
-        tabuleiro[xVertical + i][yVertical] = 1;  // Marca a posição com '1' para o navio
+        tabuleiro[xVertical + i][yVertical] = 3;  // Marca a posição com '3' para o navio
     }
 
     // Posicionando o navio horizontal no tabuleiro
     for (int i = 0; i < tamanhoHorizontal; i++) {
-        tabuleiro[xHorizontal][yHorizontal + i] = 1;  // Marca a posição com '1' para o navio
+        tabuleiro[xHorizontal][yHorizontal + i] = 3;  // Marca a posição com '3' para o navio
     }
 
     // Exibindo as coordenadas do navio vertical
@@ -86,5 +86,3 @@ int main() {
     // 1 1 1 1 1
     // 0 0 1 0 0
 
-    return 0;
-}
