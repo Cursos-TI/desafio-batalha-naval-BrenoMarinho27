@@ -6,47 +6,39 @@
 
 #include <stdio.h>
 
-int main() {
-    // Definindo o tamanho do tabuleiro 10x10
-    int tabuleiro[10][10];
+#define LINHAS 10
+#define COLUNAS 10
 
-    // Inicializando o tabuleiro com 0 (representando água)
-    for (int i = 0; i < 10; i++) {
-        for (int j = 0; j < 10; j++) {
+int main() {
+    int tabuleiro[LINHAS][COLUNAS];
+
+    // Inicializando o tabuleiro com água (0)
+    for (int i = 0; i < LINHAS; i++) {
+        for (int j = 0; j < COLUNAS; j++) {
             tabuleiro[i][j] = 0;
         }
     }
 
-    // Coordenadas e tamanho dos navios
-    int xVertical = 2, yVertical = 3, tamanhoVertical = 4;
-    int xHorizontal = 5, yHorizontal = 6, tamanhoHorizontal = 3;
-
-    // Posicionando o navio vertical no tabuleiro
-    for (int i = 0; i < tamanhoVertical; i++) {
-        tabuleiro[xVertical + i][yVertical] = 3;  // Marca a posição com '3' para o navio
+    // Posicionando navios verticais e horizontais
+    for (int i = 0; i < 4; i++) {
+        tabuleiro[2 + i][3] = 3; // Vertical
+    }
+    for (int i = 0; i < 3; i++) {
+        tabuleiro[5][6 + i] = 3; // Horizontal
     }
 
-    // Posicionando o navio horizontal no tabuleiro
-    for (int i = 0; i < tamanhoHorizontal; i++) {
-        tabuleiro[xHorizontal][yHorizontal + i] = 3;  // Marca a posição com '3' para o navio
+    // Posicionando navios diagonais 
+    for (int i = 0; i < 3; i++) {
+        tabuleiro[1 + i][1 + i] = 3; // Diagonal crescente limitada
     }
-
-    // Exibindo as coordenadas do navio vertical
-    printf("Posicionamento do navio vertical (coordenadas):\n");
-    for (int i = 0; i < tamanhoVertical; i++) {
-        printf("(%d, %d)\n", xVertical + i, yVertical);
-    }
-
-    // Exibindo as coordenadas do navio horizontal
-    printf("Posicionamento do navio horizontal (coordenadas):\n");
-    for (int i = 0; i < tamanhoHorizontal; i++) {
-        printf("(%d, %d)\n", xHorizontal, yHorizontal + i);
+    for (int i = 0; i < 4; i++) {
+        tabuleiro[8 - i][2 + i] = 3; // Diagonal decrescente limitada
     }
 
     // Exibindo o tabuleiro
     printf("\nTabuleiro de Batalha Naval:\n");
-    for (int i = 0; i < 10; i++) {
-        for (int j = 0; j < 10; j++) {
+    for (int i = 0; i < LINHAS; i++) {
+        for (int j = 0; j < COLUNAS; j++) {
             printf("%d ", tabuleiro[i][j]);
         }
         printf("\n");
@@ -54,6 +46,7 @@ int main() {
 
     return 0;
 }
+
 
 
 // Sugestão: Declare uma matriz bidimensional para representar o tabuleiro (Ex: int tabuleiro[5][5];).
