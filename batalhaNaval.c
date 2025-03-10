@@ -21,7 +21,7 @@ int main() {
 
     // Posicionando navios verticais e horizontais
     for (int i = 0; i < 4; i++) {
-        tabuleiro[2 + i][3] = 3; // Vertical
+        tabuleiro[2 + i][3] = 3; // Verticais
     }
     for (int i = 0; i < 3; i++) {
         tabuleiro[5][6 + i] = 3; // Horizontal
