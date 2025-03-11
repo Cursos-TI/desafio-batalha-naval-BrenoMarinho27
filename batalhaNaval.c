@@ -1,11 +1,5 @@
 #include <stdio.h>
 
-// Desafio Batalha Naval - MateCheck
-// Este código inicial serve como base para o desenvolvimento do sistema de Batalha Naval.
-// Siga os comentários para implementar cada parte do desafio.
-
-#include <stdio.h>
-
 #define LINHAS 10
 #define COLUNAS 10
 
@@ -13,33 +7,65 @@ int main() {
     int tabuleiro[LINHAS][COLUNAS];
 
     // Inicializando o tabuleiro com água (0)
-    for (int i = 0; i < LINHAS; i++) {
-        for (int j = 0; j < COLUNAS; j++) {
+    int i, j;
+    for (i = 0; i < LINHAS; i++) {
+        for (j = 0; j < COLUNAS; j++) {
             tabuleiro[i][j] = 0;
         }
     }
 
-    // Posicionando navios verticais e horizontais
-    for (int i = 0; i < 4; i++) {
-        tabuleiro[2 + i][3] = 3; // Verticais
-    }
-    for (int i = 0; i < 3; i++) {
-        tabuleiro[5][6 + i] = 3; // Horizontal
-    }
-
-    // Posicionando navios diagonais 
-    for (int i = 0; i < 3; i++) {
-        tabuleiro[1 + i][1 + i] = 3; // Diagonal crescente limitada
-    }
-    for (int i = 0; i < 4; i++) {
-        tabuleiro[8 - i][2 + i] = 3; // Diagonal decrescente limitada
+    // --- Habilidade Cone ---
+    // A origem do Cone será na posição (2, 4)
+    int origemX = 2, origemY = 4;
+    for (i = 0; i < 3; i++) { // Expande para baixo
+        for (j = -i; j <= i; j++) { // Expande lateralmente
+            if (origemX + i < LINHAS && origemX + i >= 0 && origemY + j < COLUNAS && origemY + j >= 0) {
+                tabuleiro[origemX + i][origemY + j] = 3; // Marca área afetada pela habilidade cone
+            }
+        }
     }
 
-    // Exibindo o tabuleiro
-    printf("\nTabuleiro de Batalha Naval:\n");
-    for (int i = 0; i < LINHAS; i++) {
-        for (int j = 0; j < COLUNAS; j++) {
-            printf("%d ", tabuleiro[i][j]);
+    // --- Habilidade Cruz ---
+    // A origem da Cruz será na posição (5, 6)
+    origemX = 5;
+    origemY = 6;
+    for (i = -2; i <= 2; i++) { // Afeta verticalmente
+        if (origemX + i < LINHAS && origemX + i >= 0) {
+            tabuleiro[origemX + i][origemY] = 2; // Marca área vertical da cruz
+        }
+    }
+    for (j = -2; j <= 2; j++) { // Afeta horizontalmente
+        if (origemY + j < COLUNAS && origemY + j >= 0) {
+            tabuleiro[origemX][origemY + j] = 2; // Marca área horizontal da cruz
+        }
+    }
+
+    // --- Habilidade Octaedro ---
+    // A origem do Octaedro será na posição (6, 1)
+    origemX = 6;
+    origemY = 1;
+
+    // Para o octaedro, vamos controlar diretamente a "distância" da origem
+    int dist;
+    for (i = -2; i <= 2; i++) { // Afeta as linhas do losango
+        if (i < 0) {
+            dist = 2 + i; // Para valores negativos de i, a distância diminui
+        } else {
+            dist = 2 - i; // Para valores positivos de i, a distância diminui
+        }
+
+        for (j = -dist; j <= dist; j++) { // Afeta as colunas do losango
+            if (origemX + i < LINHAS && origemX + i >= 0 && origemY + j < COLUNAS && origemY + j >= 0) {
+                tabuleiro[origemX + i][origemY + j] = 1; // Marca área afetada pelo octaedro
+            }
+        }
+    }
+
+    // Exibindo o tabuleiro após a aplicação das habilidades
+    printf("\nTabuleiro com Habilidades (Cone, Cruz, Octaedro):\n");
+    for (i = 0; i < LINHAS; i++) {
+        for (j = 0; j < COLUNAS; j++) {
+            printf("%2d ", tabuleiro[i][j]); // Aumentando o espaçamento para visualização
         }
         printf("\n");
     }
