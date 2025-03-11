@@ -15,7 +15,7 @@ int main() {
     }
 
     // --- Habilidade Cone ---
-    // A origem do Cone será na posição (2, 4)
+
     int origemX = 2, origemY = 4;
     for (i = 0; i < 3; i++) { // Expande para baixo
         for (j = -i; j <= i; j++) { // Expande lateralmente
@@ -26,7 +26,7 @@ int main() {
     }
 
     // --- Habilidade Cruz ---
-    // A origem da Cruz será na posição (5, 6)
+
     origemX = 5;
     origemY = 6;
     for (i = -2; i <= 2; i++) { // Afeta verticalmente
@@ -41,11 +41,11 @@ int main() {
     }
 
     // --- Habilidade Octaedro ---
-    // A origem do Octaedro será na posição (6, 1)
+
     origemX = 6;
     origemY = 1;
 
-    // Para o octaedro, vamos controlar diretamente a "distância" da origem
+   
     int dist;
     for (i = -2; i <= 2; i++) { // Afeta as linhas do losango
         if (i < 0) {
